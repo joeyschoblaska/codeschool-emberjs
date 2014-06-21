@@ -3,12 +3,13 @@ var App = Ember.Application.create({
 });
 
 App.Router.map(function() {
-  this.route("about", {path: "/aboutus"});
+  this.route('credits', { path: '/thanks' });
+  this.route('about');
 });
 
 App.IndexController = Ember.Controller.extend({
   productsCount: 6,
-  logo: "../vendor/images/logo.png",
+  logo: 'images/logo.png',
   time: function() {
     return (new Date()).toDateString();
   }.property()
