@@ -30,6 +30,9 @@
 
     <script type="text/x-handlebars" data-template-name="index">
       <h1>Welcome to Flint & Flame!</h1>
+      <p>There are {{productsCount}} products</p>
+      <p>Rendered on {{time}}</p>
+      <img {{bind-attr src="logo"}} alt="logo" />
     </script>
 
     <script type="text/x-handlebars" data-template-name="about">
