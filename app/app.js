@@ -9,8 +9,16 @@ App.Router.map(function() {
 
 App.IndexController = Ember.Controller.extend({
   productsCount: 6,
-  logo: 'images/logo.png',
+  logo: 'images/logo-small.png',
   time: function() {
     return (new Date()).toDateString();
+  }.property()
+});
+
+App.AboutController = Ember.Controller.extend({
+  contactName: "Joey Schoblaska",
+  avatar: "images/avatar.png",
+  open: function() {
+    return ((new Date()).getDay() === 0) ? "closed" : "open";
   }.property()
 });
