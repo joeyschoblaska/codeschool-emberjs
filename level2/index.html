@@ -16,8 +16,8 @@
         <div class="container">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li class="active"><a href="#/aboutus">About</a></li>
+              {{#link-to "index" class="navbar-brand" tagName="li"}}Home{{/link-to}}
+              {{#link-to "about" class="navbar-brand" tagName="li"}}About{{/link-to}}
             </ul>
           </div>
         </div>
