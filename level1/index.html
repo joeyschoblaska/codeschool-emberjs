@@ -11,10 +11,18 @@
   </head>
 
   <body>
-    <script type="text/x-handlebars">
+    <script type="text/x-handlebars" data-template-name="application">
       <div class="navbar"></div>
-      <div class="container"></div>
+      <div class="container">{{outlet}}</div>
       <footer class="container"></footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <h1>Welcome to Flint & Flame!</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About The Fire Spirits</h1>
     </script>
   </body>
 </html>
