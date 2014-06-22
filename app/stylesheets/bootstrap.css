@@ -245,8 +245,8 @@ table {
 }
 @font-face {
   font-family: 'clarendon';
-  src: url('/assets/clarendonltstd-webfont.eot');
-  src: url('/assets/clarendonltstd-webfont.eot?#iefix') format('embedded-opentype'), url('/assets/clarendonltstd-webfont.woff') format('woff'), url('/assets/clarendonltstd-webfont.ttf') format('truetype'), url('/assets/clarendonltstd-webfont.svg#clarendon_lt_stdregular') format('svg');
+  src: url('../images/clarendonltstd-webfont.eot');
+  src: url('../images/clarendonltstd-webfont.eot?#iefix') format('embedded-opentype'), url('../images/clarendonltstd-webfont.woff') format('woff'), url('../images/clarendonltstd-webfont.ttf') format('truetype'), url('../images/clarendonltstd-webfont.svg#clarendon_lt_stdregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
