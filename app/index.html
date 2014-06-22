@@ -73,11 +73,24 @@
             <div class="col-md-7">
               <h2>{{title}}</h2>
               <p class="product-description">{{description}}</p>
-              <p><button class="btn btn-success">Buy for ${{price}}</button></p>
+              <p>{{#link-to "product" this tagName="button" class="btn btn-success"}}Buy for ${{price}}{{/link-to}}</p>
             </div>
           </li>
         {{/each}}
       </ul>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='product'>
+      <div class="row">
+        <div class="col-md-7">
+          <h1>{{title}}</h1>
+          <p>{{description}}</p>
+          <p>Buy for ${{price}}</p>
+        </div>
+        <div class="col-md-5">
+          <img {{bind-attr src="image"}} class="img-thumbnail img-rounded" />
+        </div>
+      </div>
     </script>
 
     <script type='text/x-handlebars' data-template-name='contacts'>
