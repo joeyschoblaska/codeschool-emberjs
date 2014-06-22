@@ -2,9 +2,41 @@ var App = Ember.Application.create({
   LOG_TRANSITIONS: true
 });
 
+App.PRODUCTS = [
+  {
+    title: "Flint",
+    price: 99,
+    description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
+    isOnSale: true,
+    image: "images/products/flint.png"
+  },
+  {
+    title: "Kindling",
+    price: 249,
+    description: 'Easily combustible small sticks or twigs used for starting a fire.',
+    isOnSale: false,
+    image: "images/products/kindling.png"
+  }
+]
+
+App.CONTACTS = [
+  {
+    name: "Adam",
+    avatar: "images/contacts/adam.png",
+    about: "About Adam..."
+  },
+  {
+    name: "Martin",
+    avatar: "images/contacts/martin.png",
+    about: "About Martin..."
+  }
+]
+
 App.Router.map(function() {
   this.route('credits', { path: '/thanks' });
   this.route('about');
+  this.resource('products');
+  this.resource('contacts');
 });
 
 App.IndexController = Ember.Controller.extend({
@@ -22,3 +54,15 @@ App.AboutController = Ember.Controller.extend({
     return ((new Date()).getDay() === 0) ? "closed" : "open";
   }.property()
 });
+
+App.ProductsRoute = Ember.Route.extend({
+  model: function() {
+    return App.PRODUCTS;
+  }
+})
+
+App.ContactsRoute = Ember.Route.extend({
+  model: function() {
+    return App.CONTACTS;
+  }
+})
