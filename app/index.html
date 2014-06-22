@@ -95,15 +95,23 @@
 
     <script type='text/x-handlebars' data-template-name='contacts'>
       <h1>Contacts</h1>
+      <ul class='list-unstyled'>
       {{#each}}
-        <div>
-          <img {{bind-attr src="avatar"}} class="img-thumbnail col-md-5" />
-          <div class="col-md-7">
-            <h2>{{name}}</h2>
+        <li class='row'>
+          <img {{bind-attr src='avatar' alt='name'}} class='img-thumbnail col-md-2'/>
+          <div class='col-sm-7'>
+            <h2>{{#link-to "contact" this}}{{name}}{{/link-to}}</h2>
             <p>{{about}}</p>
           </div>
-        </div>
+        </li>
       {{/each}}
+      </ul>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='contact'>
+      <h1>{{name}}</h1>
+      <img {{bind-attr src='avatar' alt='name'}} class='img-thumbnail col-md-2'/>
+      <p>{{about}}</p>
     </script>
   </body>
 </html>
