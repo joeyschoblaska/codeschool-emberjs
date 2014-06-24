@@ -54,7 +54,8 @@ App.Product = DS.Model.extend({
   price: DS.attr("number"),
   description: DS.attr("string"),
   isOnSale: DS.attr("boolean"),
-  image: DS.attr("string")
+  image: DS.attr("string"),
+  reviews: DS.hasMany("review", {async: true}),
 });
 
 App.Product.FIXTURES = [
@@ -64,7 +65,8 @@ App.Product.FIXTURES = [
     price: 99,
     description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
     isOnSale: true,
-    image: "images/products/flint.png"
+    image: "images/products/flint.png",
+    reviews: [100,101]
   },
   {
     id: 2,
@@ -94,5 +96,24 @@ App.Contact.FIXTURES = [
     name: "Martin",
     avatar: "images/contacts/martin.png",
     about: "About Martin..."
+  }
+]
+
+App.Review = DS.Model.extend({
+  text: DS.attr("string"),
+  reviewedAt: DS.attr("date"),
+  product: DS.belongsTo("product")
+});
+
+App.Review.FIXTURES = [
+  {
+    id: 100,
+    product_id: 1,
+    text: "Revieewwweeewww!!!"
+  },
+  {
+    id: 101,
+    product_id: 1,
+    text: "Another Revieewwweeewww!!!"
   }
 ]

@@ -85,6 +85,15 @@
           <h1>{{title}}</h1>
           <p>{{description}}</p>
           <p>Buy for ${{price}}</p>
+
+          <h3>Reviews</h3>
+          <ul>
+            {{#each reviews}}
+              <li>{{text}}</li>
+            {{else}}
+              <li>(none yet)</li>
+            {{/each}}
+          </ul>
         </div>
         <div class="col-md-5">
           <img {{bind-attr src="image"}} class="img-thumbnail img-rounded" />
