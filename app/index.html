@@ -94,6 +94,9 @@
               <li>(none yet)</li>
             {{/each}}
           </ul>
+
+          <h3>Crafter</h3>
+          <p>{{#link-to "contact" crafter}}{{crafter.name}}{{/link-to}}</p>
         </div>
         <div class="col-md-5">
           <img {{bind-attr src="image"}} class="img-thumbnail img-rounded" />
@@ -127,6 +130,12 @@
         <div class='col-sm-7'>
           <h2>{{name}}</h2>
           <p>{{about}}</p>
+          <h3>Products</h3>
+          <ul>
+            {{#each products}}
+            <li>{{#link-to "product" this}}{{title}}{{/link-to}}</li>
+            {{/each}}
+          </ul>
         </div>
       </div>
     </script>

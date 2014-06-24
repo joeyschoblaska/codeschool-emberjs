@@ -56,11 +56,13 @@ App.Product = DS.Model.extend({
   isOnSale: DS.attr("boolean"),
   image: DS.attr("string"),
   reviews: DS.hasMany("review", {async: true}),
+  crafter: DS.belongsTo("contact", {async: true})
 });
 
 App.Product.FIXTURES = [
   {
     id: 1,
+    crafter: 1,
     title: "Flint",
     price: 99,
     description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
@@ -70,6 +72,7 @@ App.Product.FIXTURES = [
   },
   {
     id: 2,
+    crafter: 2,
     title: "Kindling",
     price: 249,
     description: 'Easily combustible small sticks or twigs used for starting a fire.',
@@ -81,7 +84,8 @@ App.Product.FIXTURES = [
 App.Contact = DS.Model.extend({
   name: DS.attr("string"),
   avatar: DS.attr("string"),
-  about: DS.attr("string")
+  about: DS.attr("string"),
+  products: DS.hasMany("product", {async: true})
 });
 
 App.Contact.FIXTURES = [
@@ -89,13 +93,15 @@ App.Contact.FIXTURES = [
     id: 1,
     name: "Adam",
     avatar: "images/contacts/adam.png",
-    about: "About Adam..."
+    about: "About Adam...",
+    products: [1]
   },
   {
     id: 2,
     name: "Martin",
     avatar: "images/contacts/martin.png",
-    about: "About Martin..."
+    about: "About Martin...",
+    products: [2]
   }
 ]
 
@@ -108,12 +114,12 @@ App.Review = DS.Model.extend({
 App.Review.FIXTURES = [
   {
     id: 100,
-    product_id: 1,
+    product: 1,
     text: "Revieewwweeewww!!!"
   },
   {
     id: 101,
-    product_id: 1,
+    product: 2,
     text: "Another Revieewwweeewww!!!"
   }
 ]
