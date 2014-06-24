@@ -4,26 +4,13 @@ var App = Ember.Application.create({
 
 App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-App.CONTACTS = [
-  {
-    name: "Adam",
-    avatar: "images/contacts/adam.png",
-    about: "About Adam..."
-  },
-  {
-    name: "Martin",
-    avatar: "images/contacts/martin.png",
-    about: "About Martin..."
-  }
-]
-
 App.Router.map(function() {
   this.route('credits', { path: '/thanks' });
   this.resource('products', function() {
     this.resource('product', {path: '/:product_id'});
   });
   this.resource('contacts', function() {
-    this.resource('contact', {path: '/:name'});
+    this.resource('contact', {path: '/:contact_id'});
   });
 });
 
@@ -58,13 +45,7 @@ App.ProductsRoute = Ember.Route.extend({
 
 App.ContactsRoute = Ember.Route.extend({
   model: function() {
-    return App.CONTACTS;
-  }
-});
-
-App.ContactRoute = Ember.Route.extend({
-  model: function(params) {
-    return App.CONTACTS.findBy("name", params.name);
+    return this.store.findAll("contact");
   }
 });
 
@@ -92,5 +73,26 @@ App.Product.FIXTURES = [
     description: 'Easily combustible small sticks or twigs used for starting a fire.',
     isOnSale: false,
     image: "images/products/kindling.png"
+  }
+]
+
+App.Contact = DS.Model.extend({
+  name: DS.attr("string"),
+  avatar: DS.attr("string"),
+  about: DS.attr("string")
+});
+
+App.Contact.FIXTURES = [
+  {
+    id: 1,
+    name: "Adam",
+    avatar: "images/contacts/adam.png",
+    about: "About Adam..."
+  },
+  {
+    id: 2,
+    name: "Martin",
+    avatar: "images/contacts/martin.png",
+    about: "About Martin..."
   }
 ]
