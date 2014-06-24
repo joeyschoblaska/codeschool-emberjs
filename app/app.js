@@ -14,8 +14,14 @@ App.Router.map(function() {
   });
 });
 
-App.IndexController = Ember.Controller.extend({
-  productsCount: 6,
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.findAll("product");
+  }
+});
+
+App.IndexController = Ember.ArrayController.extend({
+  productsCount: Ember.computed.alias("length"),
   logo: 'images/logo-small.png',
   time: function() {
     return (new Date()).toDateString();
