@@ -28,12 +28,18 @@ App.IndexController = Ember.ArrayController.extend({
   }.property()
 });
 
-App.ContactsIndexController = Ember.Controller.extend({
-  contactName: "Joey Schoblaska",
+App.ContactsIndexController = Ember.ObjectController.extend({
+  contactName: Ember.computed.alias("name"),
   avatar: "images/avatar.png",
   open: function() {
     return ((new Date()).getDay() === 0) ? "closed" : "open";
   }.property()
+});
+
+App.ContactsIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find("contact", 1);
+  }
 });
 
 App.ProductsController = Ember.ArrayController.extend({
@@ -58,6 +64,10 @@ App.ContactsRoute = Ember.Route.extend({
     return this.store.findAll("contact");
   }
 });
+
+App.ContactsController = Ember.ArrayController.extend({
+  sortProperties: ["name"]
+})
 
 App.Product = DS.Model.extend({
   title: DS.attr("string"),
