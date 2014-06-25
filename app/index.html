@@ -154,15 +154,7 @@
     <script type='text/x-handlebars' data-template-name='products/index'>
       <p class="text-muted">Choose a product on the left</p>
       {{#each }}
-        <li class="row">
-          <img {{bind-attr src='image'}} class='img-thumbnail col-sm-5' />
-          <div class="col-sm-7">
-            <h2>{{title}}</h2>
-            <p class="product-description">{{description}}</p>
-            <p>{{#link-to 'product' this class='btn btn-success'}}
-              Buy for ${{price}}{{/link-to}}</p>
-          </div>
-        </li>
+        {{product-details product=this classNames="row" tagName="li"}}
       {{/each}}
     </script>
 
@@ -193,6 +185,9 @@
         </div>
         <p class="product-description">{{product.description}}</p>
         <p>{{#link-to 'product' product class='btn btn-success'}}Buy for ${{product.price}}{{/link-to}}</p>
+        {{#if hasReviews}}
+          <p>Read all {{reviewsCount}} reviews.</p>
+        {{/if}}
       </div>
     </script>
 
