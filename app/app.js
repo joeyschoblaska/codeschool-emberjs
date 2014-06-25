@@ -25,7 +25,10 @@ App.IndexController = Ember.ArrayController.extend({
   logo: 'images/logo-small.png',
   time: function() {
     return (new Date()).toDateString();
-  }.property()
+  }.property(),
+  onSale: function() {
+    return this.filterBy("isOnSale").slice(0,3);
+  }.property("@each.isOnSale")
 });
 
 App.ContactsIndexController = Ember.ObjectController.extend({
