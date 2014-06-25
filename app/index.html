@@ -152,6 +152,13 @@
 
     <script type='text/x-handlebars' data-template-name='products/index'>
       <p class="text-muted">Choose a product on the left</p>
+      {{#each deals}}
+        <p>
+          {{#link-to "product" this}}{{title}}{{/link-to}}
+          {{description}}
+          {{price}}
+        </p>
+      {{/each}}
     </script>
   </body>
 </html>

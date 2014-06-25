@@ -55,6 +55,20 @@ App.ProductsRoute = Ember.Route.extend({
   }
 });
 
+App.ProductsIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.findAll("product");
+  }
+});
+
+App.ProductsIndexController = Ember.ArrayController.extend({
+  deals: function() {
+    return this.filter(function(product) {
+      return product.get('price') < 500;
+    });
+  }.property("@each.price")
+});
+
 // Ember automatically does this as long as we adhere to naming conventions
 // App.ProductRoute = Ember.Route.extend({
 //   model: function(params) {
