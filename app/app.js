@@ -8,6 +8,7 @@ App.Router.map(function() {
   this.route('credits', { path: '/thanks' });
   this.resource('products', function() {
     this.resource('product', {path: '/:product_id'});
+    this.route('onsale');
   });
   this.resource('contacts', function() {
     this.resource('contact', {path: '/:contact_id'});
@@ -160,3 +161,10 @@ App.Review.FIXTURES = [
     text: "Another Revieewwweeewww!!!"
   }
 ]
+
+App.ProductsOnsaleRoute = Ember.Route.extend({
+  model: function() {
+    // get model from ProductsController
+    return this.modelFor("products").filterBy("isOnSale");
+  }
+});
