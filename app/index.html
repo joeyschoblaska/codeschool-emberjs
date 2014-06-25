@@ -109,7 +109,7 @@
           </ul>
 
           <h3>Crafter</h3>
-          <p>{{#link-to "contact" crafter}}{{crafter.name}}{{/link-to}}</p>
+          {{contact-details contact=crafter classNames="row"}}
         </div>
         <div class="col-md-5">
           <img {{bind-attr src="image"}} class="img-thumbnail img-rounded" />
@@ -139,8 +139,6 @@
       <div class='row'>
         <div class='col-sm-5'>
           <img {{bind-attr src='avatar' alt='name'}} class='img-thumbnail img-rounded'/>
-        </div>
-        <div class='col-sm-7'>
           <h2>{{name}}</h2>
           <p>{{about}}</p>
           <h3>Products</h3>
@@ -196,6 +194,12 @@
         <p class="product-description">{{product.description}}</p>
         <p>{{#link-to 'product' product class='btn btn-success'}}Buy for ${{product.price}}{{/link-to}}</p>
       </div>
+    </script>
+
+    <script type='text/x-handlebars' data-template-name='components/contact-details'>
+      <img {{bind-attr src='contact.avatar' alt='name'}} class='img-thumbnail img-rounded'/>
+      <h2>{{contact.name}}</h2>
+      <p>{{contact.about}}</p>
     </script>
   </body>
 </html>
