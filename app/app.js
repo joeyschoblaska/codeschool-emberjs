@@ -9,6 +9,7 @@ App.Router.map(function() {
   this.resource('products', function() {
     this.resource('product', {path: '/:product_id'});
     this.route('onsale');
+    this.route("deals");
   });
   this.resource('contacts', function() {
     this.resource('contact', {path: '/:contact_id'});
@@ -62,12 +63,12 @@ App.ProductsIndexRoute = Ember.Route.extend({
   }
 });
 
-App.ProductsIndexController = Ember.ArrayController.extend({
-  deals: function() {
-    return this.filter(function(product) {
-      return product.get('price') < 500;
+App.ProductsDealsRoute = Ember.Route.extend({
+  model: function(){
+    return this.modelFor("products").filter(function(product){
+      return product.get("price") < 500;
     });
-  }.property("@each.price")
+  }
 });
 
 // Ember automatically does this as long as we adhere to naming conventions
