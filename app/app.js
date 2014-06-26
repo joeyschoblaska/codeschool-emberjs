@@ -98,10 +98,10 @@ App.Product = DS.Model.extend({
   crafter: DS.belongsTo("contact", {async: true}),
   ratings: DS.attr(),
   rating: function(){
-    return this.get('ratings').reduce(function(previousValue, rating) {
-      return previousValue + rating;
-    }, 0) / this.get('ratings').length;
-  }.property('ratings.@each')
+    return this.get('reviews').reduce(function(previousValue, review) {
+      return previousValue + review.get("rating");
+    }, 0) / this.get('reviews.length');
+  }.property('reviews.@each.rating')
 });
 
 App.Product.FIXTURES = [
@@ -113,8 +113,7 @@ App.Product.FIXTURES = [
     description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
     isOnSale: true,
     image: "images/products/flint.png",
-    reviews: [100,101],
-    ratings: [2,1,3,3]
+    reviews: [100,101]
   },
   {
     id: 2,
@@ -123,8 +122,7 @@ App.Product.FIXTURES = [
     price: 249,
     description: 'Easily combustible small sticks or twigs used for starting a fire.',
     isOnSale: false,
-    image: "images/products/kindling.png",
-    ratings: [2,1,3,3]
+    image: "images/products/kindling.png"
   }
 ]
 
@@ -155,19 +153,22 @@ App.Contact.FIXTURES = [
 App.Review = DS.Model.extend({
   text: DS.attr("string"),
   reviewedAt: DS.attr("date"),
-  product: DS.belongsTo("product")
+  product: DS.belongsTo("product"),
+  rating: DS.attr("number")
 });
 
 App.Review.FIXTURES = [
   {
     id: 100,
     product: 1,
-    text: "Revieewwweeewww!!!"
+    text: "Revieewwweeewww!!!",
+    rating: 3
   },
   {
     id: 101,
     product: 2,
-    text: "Another Revieewwweeewww!!!"
+    text: "Another Revieewwweeewww!!!",
+    rating: 3
   }
 ]
 
@@ -211,7 +212,6 @@ App.ProductController = Ember.ObjectController.extend({
     });
   }.property("model"),
   ratings: [1, 2, 3, 4, 5],
-  selectedRating: 5,
   isNotReviewed: Ember.computed.alias("review.isNew"),
   actions: {
     createReview: function() {
@@ -220,12 +220,6 @@ App.ProductController = Ember.ObjectController.extend({
       controller.get("review").save().then(function(review) {
         controller.get("model.reviews").addObject(review);
       });
-    },
-    createRating: function() {
-      var product = this.get('model'),
-      selectedRating = this.get('selectedRating');
-      product.get('ratings').addObject(selectedRating);
-      product.save();
     }
   }
 })

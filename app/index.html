@@ -102,15 +102,10 @@
 
           {{render "reviews" reviews}}
 
-          <div class="new-rating">
-            <h3>Rate {{title}}</h3>
-            {{view Ember.Select content=ratings value=selectedRating}}
-            <button {{action 'createRating'}} class='btn btn-primary'>Rate</button>
-          </div>
-
           {{#if isNotReviewed}}
             <div class="new-review">
               <h3>Review {{title}}</h3>
+              {{view Ember.Select content=ratings value=review.rating}}
               {{#if review.text}}
                 <p class="text-muted">{{review.text}}</p>
               {{/if}}
