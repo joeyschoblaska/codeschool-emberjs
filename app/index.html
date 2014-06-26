@@ -125,9 +125,16 @@
 
     <script type="text/x-handlebars" data-template-name="reviews">
       <h3>Reviews</h3>
-      <ul>
+      <ul class="reviews">
         {{#each}}
-          <li>{{text}}</li>
+          {{#view "App.ReviewView" tag="li" length=text.length}}
+            <div class="content">{{text}}</div>
+            {{#if view.readMore}}
+              <span class="expand text-success">
+                Read {{#if view.isExpanded}}Less{{else}}More{{/if}}
+              </span>
+            {{/if}}
+          {{/view}}
         {{else}}
           <li>(none yet)</li>
         {{/each}}
