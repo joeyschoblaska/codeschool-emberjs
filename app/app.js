@@ -95,7 +95,13 @@ App.Product = DS.Model.extend({
   isOnSale: DS.attr("boolean"),
   image: DS.attr("string"),
   reviews: DS.hasMany("review", {async: true}),
-  crafter: DS.belongsTo("contact", {async: true})
+  crafter: DS.belongsTo("contact", {async: true}),
+  ratings: DS.attr(),
+  rating: function(){
+    return this.get('ratings').reduce(function(previousValue, rating) {
+      return previousValue + rating;
+    }, 0) / this.get('ratings').length;
+  }.property('ratings.@each')
 });
 
 App.Product.FIXTURES = [
@@ -107,7 +113,8 @@ App.Product.FIXTURES = [
     description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
     isOnSale: true,
     image: "images/products/flint.png",
-    reviews: [100,101]
+    reviews: [100,101],
+    ratings: [2,1,3,3]
   },
   {
     id: 2,
@@ -116,7 +123,8 @@ App.Product.FIXTURES = [
     price: 249,
     description: 'Easily combustible small sticks or twigs used for starting a fire.',
     isOnSale: false,
-    image: "images/products/kindling.png"
+    image: "images/products/kindling.png",
+    ratings: [2,1,3,3]
   }
 ]
 
@@ -197,20 +205,28 @@ App.ReviewsController = Ember.ArrayController.extend({
 
 App.ProductController = Ember.ObjectController.extend({
   text: "",
+  ratings: [1, 2, 3, 4, 5],
+  selectedRating: 5,
   actions: {
     createReview: function() {
       var review = this.store.createRecord("review", {
         text: this.get("text"),
         product: this.get("model"),
         reviewedAt: new Date()
-      })
+      });
 
       var controller = this;
 
       review.save().then(function(review) {
         controller.set("text", "");
         controller.get("model.reviews").addObject(review);
-      })
+      });
+    },
+    createRating: function() {
+      var product = this.get('model'),
+      selectedRating = this.get('selectedRating');
+      product.get('ratings').addObject(selectedRating);
+      product.save();
     }
   }
 })

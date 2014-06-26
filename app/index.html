@@ -97,9 +97,16 @@
         <div class="col-md-7">
           <h1>{{title}}</h1>
           <p>{{description}}</p>
+          <p class='text-muted'>This Product has a {{rating}} star rating!</p>
           <p>Buy for ${{price}}</p>
 
           {{render "reviews" reviews}}
+
+          <div class="new-rating">
+            <h3>Rate {{title}}</h3>
+            {{view Ember.Select content=ratings value=selectedRating}}
+            <button {{action 'createRating'}} class='btn btn-primary'>Rate</button>
+          </div>
 
           <div class="new-review">
             <h3>Review {{title}}</h3>
