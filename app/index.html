@@ -101,6 +101,15 @@
 
           {{render "reviews" reviews}}
 
+          <div class="new-review">
+            <h3>Review {{title}}</h3>
+            {{#if text}}
+              <p class="text-muted">{{text}}</p>
+            {{/if}}
+            {{textarea valueBinding="text"}}
+            <button {{action "createReview"}} class="btn btn-primary">Review</button>
+          </div>
+
           <h3>Crafter</h3>
           {{contact-details contact=crafter classNames="row"}}
         </div>
