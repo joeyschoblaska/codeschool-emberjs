@@ -99,7 +99,7 @@
           <p>{{description}}</p>
           <p>Buy for ${{price}}</p>
 
-          {{partial "reviews"}}
+          {{render "reviews" reviews}}
 
           <h3>Crafter</h3>
           {{contact-details contact=crafter classNames="row"}}
@@ -110,10 +110,10 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="_reviews">
+    <script type="text/x-handlebars" data-template-name="reviews">
       <h3>Reviews</h3>
       <ul>
-        {{#each reviews}}
+        {{#each}}
           <li>{{text}}</li>
         {{else}}
           <li>(none yet)</li>

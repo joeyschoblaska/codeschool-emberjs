@@ -189,3 +189,8 @@ App.ProductView = Ember.View.extend({
   classNameBindings: ["isOnSale"],
   isOnSale: Ember.computed.alias("controller.isOnSale")
 })
+
+App.ReviewsController = Ember.ArrayController.extend({
+  sortProperties: ["reviewedAt"],
+  sortAscending: false
+})
