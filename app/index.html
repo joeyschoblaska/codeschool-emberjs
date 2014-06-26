@@ -99,14 +99,7 @@
           <p>{{description}}</p>
           <p>Buy for ${{price}}</p>
 
-          <h3>Reviews</h3>
-          <ul>
-            {{#each reviews}}
-              <li>{{text}}</li>
-            {{else}}
-              <li>(none yet)</li>
-            {{/each}}
-          </ul>
+          {{partial "reviews"}}
 
           <h3>Crafter</h3>
           {{contact-details contact=crafter classNames="row"}}
@@ -115,6 +108,17 @@
           <img {{bind-attr src="image"}} class="img-thumbnail img-rounded" />
         </div>
       </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_reviews">
+      <h3>Reviews</h3>
+      <ul>
+        {{#each reviews}}
+          <li>{{text}}</li>
+        {{else}}
+          <li>(none yet)</li>
+        {{/each}}
+      </ul>
     </script>
 
     <script type='text/x-handlebars' data-template-name='contacts'>
